@@ -1,0 +1,80 @@
+{
+	"_version": "1.18.0",
+	"sap.app": {
+		"id": "sap.workzone.cpkg.AIScard",
+		"type": "card",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{TITLE}}",
+		"subTitle": "{{SUBTITLE}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"shortTitle": "{{SHORTTITLE}}",
+		"info": "{{INFO}}",
+		"description": "{{DESCRIPTION}}",
+		"tags": {
+			"keywords": [
+				"{{KEYWORD1}}"
+			]
+		}
+	},
+	"sap.card": {
+        "type": "Calendar",
+        "configuration": {
+            "destinations": {
+                "CRM": {
+                    "name": "ActivityCardsCRM"
+                }
+            }
+        },
+        "data": {
+            "request": {
+                "url": "{{destinations.CRM}}/sap/c4c/api/v1/visit-service/visits",
+                "parameters": {
+                    "$format": "json"
+                },
+                "withCredentials": true
+            }
+        },
+        "designtime": "dt/configuration",
+        "header": {
+            "title": "AI Sales Visits",
+            "subTitle": "AI Sales",
+            "status": {
+                "text": {
+                    "format": {
+                        "translationKey": "i18n>CARD.COUNT_X_OF_Y",
+                        "parts": [
+                            "parameters>/visibleItems",
+                            "parameters>/allItems"
+                        ]
+                    }
+                }
+            }
+        },
+        "content": {
+            "date": "{parameters>/NOW_ISO}",
+            "maxItems": 10,
+            "maxLegendItems": 10,
+            "noItemsText": "Für heute ist nichts geplant",
+            "item": {
+                "template": {
+                    "startDate": "{scheduledStartDateTime}",
+                    "endDate": "{scheduledEndDateTime}",
+                    "title": "{description}",
+                    "text": "{location}",
+                    "type": "{= ${visitType} === '0001' ? 'Type06' : 'Type07' }"
+                },
+                "path": "/value"
+            },
+            "specialDate": {
+                "template": {
+                    "startDate": "{scheduledStartDateTime}",
+                    "endDate": "{scheduledEndDateTime}",
+                    "type": "{= ${visitType} === '0001' ? 'Type06' : 'Type07' }"
+                },
+                "path": "/value"
+            }
+        }
+    }
+}

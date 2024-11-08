@@ -1,0 +1,16 @@
+{
+    "_version": "3.1.0",
+    "identification": {
+      "id": "AISales.ContentPackage.space",
+      "title": "AI Sales",
+      "entityType": "space"
+    },
+    "payload": {
+      "contentNodes": [
+        {
+          "type": "workpage",
+          "id": "AISales.ContentPackage.workpage"
+        }
+      ]
+    }
+  }

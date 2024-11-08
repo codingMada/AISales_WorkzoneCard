@@ -1,0 +1,298 @@
+{
+	"sap.package": {
+		"id": "AIS.ContentPackage",
+		"packageVersion": {
+			"version": "1.1.2",
+			"upgradeNotification": "all"
+		},
+		"i18n": "i18n/i18n.properties",
+		"icon": "sap-icon://accept",
+		"title": "AISales Content Package",
+		"subTitle": "Content Package",
+		"shortTitle": "WZCP",
+		"info": "",
+		"description": "",
+		"tags": {
+			"keywords": []
+		},
+		"vendor": {
+			"id": "",
+			"name": "",
+			"url": ""
+		},
+		"products": "",
+		"categories": "",
+		"scope": "external",
+		"license": {
+			"text": "",
+			"url": ""
+		},
+		"homepage": {
+			"text": "",
+			"url": ""
+		},
+		"support": {
+			"url": ""
+		},
+		"contents": [
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "sap.workzone.cpkg.AIScard",
+						"type": "card",
+						"i18n": "i18n/i18n.properties",
+						"title": "{{TITLE}}",
+						"subTitle": "{{SUBTITLE}}",
+						"shortTitle": "{{SHORTTITLE}}",
+						"info": "{{INFO}}",
+						"description": "{{DESCRIPTION}}",
+						"tags": {
+							"keywords": [
+								"{{KEYWORD1}}"
+							]
+						},
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/card-WZCP"
+			}
+		],
+		"documentation": {
+			"url": ""
+		},
+		"consumption": [],
+		"dependencies": {
+			"products": [],
+			"services": []
+		},
+		"destinations": [],
+		"cdmEntities": [
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "AISales.ContentPackage.role",
+					"title": "AISalesCPR",
+					"entityType": "role"
+				},
+				"payload": {
+					"spaces": [
+						{
+							"id": "AISales.ContentPackage.space"
+						}
+					],
+					"apps": [
+						{
+							"id": "sap.workzone.cpkg.AIScard.app"
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.1.0",
+				"identification": {
+					"id": "AISales.ContentPackage.space",
+					"title": "AI Sales",
+					"entityType": "space"
+				},
+				"payload": {
+					"contentNodes": [
+						{
+							"type": "workpage",
+							"id": "AISales.ContentPackage.workpage"
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "AISales.ContentPackage.workpage",
+					"entityType": "workpage"
+				},
+				"payload": {
+					"workpageConfig": {
+						"title": "AI Sales Visits Calender"
+					},
+					"rows": [
+						{
+							"id": "row-1",
+							"rowConfig": {},
+							"columns": [
+								{
+									"id": "col-11",
+									"columnConfig": {},
+									"cells": [
+										{
+											"id": "cell-111",
+											"cellConfig": {},
+											"widgets": [
+												{
+													"id": "widg-1111",
+													"viz": {
+														"appId": "sap.workzone.cpkg.AIScard.app",
+														"vizId": "sap.workzone.cpkg.AIScard.viz"
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "sap.workzone.cpkg.AIScard.app",
+					"title": "{{TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"sap.workzone.cpkg.AIScard.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"_version": "1.18.0",
+								"sap.app": {
+									"id": "sap.workzone.cpkg.AIScard",
+									"type": "card",
+									"i18n": "i18n/i18n.properties",
+									"title": "{{TITLE}}",
+									"subTitle": "{{SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"shortTitle": "{{SHORTTITLE}}",
+									"info": "{{INFO}}",
+									"description": "{{DESCRIPTION}}",
+									"tags": {
+										"keywords": [
+											"{{KEYWORD1}}"
+										]
+									}
+								},
+								"sap.card": {
+									"type": "Calendar",
+									"configuration": {
+										"destinations": {
+											"CRM": {
+												"name": "ActivityCardsCRM"
+											}
+										}
+									},
+									"data": {
+										"request": {
+											"url": "{{destinations.CRM}}/sap/c4c/api/v1/visit-service/visits",
+											"parameters": {
+												"$format": "json"
+											},
+											"withCredentials": true
+										}
+									},
+									"designtime": "dt/configuration",
+									"header": {
+										"title": "AI Sales Visits",
+										"subTitle": "AI Sales",
+										"status": {
+											"text": {
+												"format": {
+													"translationKey": "i18n>CARD.COUNT_X_OF_Y",
+													"parts": [
+														"parameters>/visibleItems",
+														"parameters>/allItems"
+													]
+												}
+											}
+										}
+									},
+									"content": {
+										"date": "{parameters>/NOW_ISO}",
+										"maxItems": 10,
+										"maxLegendItems": 10,
+										"noItemsText": "Für heute ist nichts geplant",
+										"item": {
+											"template": {
+												"startDate": "{scheduledStartDateTime}",
+												"endDate": "{scheduledEndDateTime}",
+												"title": "{description}",
+												"text": "{location}",
+												"type": "{= ${visitType} === '0001' ? 'Type06' : 'Type07' }"
+											},
+											"path": "/value"
+										},
+										"specialDate": {
+											"template": {
+												"startDate": "{scheduledStartDateTime}",
+												"endDate": "{scheduledEndDateTime}",
+												"type": "{= ${visitType} === '0001' ? 'Type06' : 'Type07' }"
+											},
+											"path": "/value"
+										}
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "sap.workzone.cpkg.AIScard"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"TITLE": "CRM Calendar",
+							"SUBTITLE": "CRM Calendar",
+							"SHORTTITLE": "CRM Calendar",
+							"INFO": "CRM Calendar",
+							"DESCRIPTION": "CRM Calendar",
+							"KEYWORD1": "Keyword"
+						}
+					},
+					{
+						"locale": "en",
+						"textDictionary": {
+							"TITLE": "CRM Calendar",
+							"SUBTITLE": "CRM Calendar",
+							"SHORTTITLE": "CRM Calendar",
+							"INFO": "CRM Calendar",
+							"DESCRIPTION": "CRM Calendar",
+							"KEYWORD1": "Keyword"
+						}
+					}
+				]
+			}
+		]
+	}
+}

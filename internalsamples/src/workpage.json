@@ -1,0 +1,39 @@
+{
+    "_version": "3.2.0",
+    "identification": {
+      "id": "AISales.ContentPackage.workpage",
+      "entityType": "workpage"
+    },
+    "payload": {
+      "workpageConfig": {
+        "title": "AI Sales Visits Calender"
+      },
+      "rows": [
+        {
+          "id": "row-1",
+          "rowConfig": {},
+          "columns": [
+            {
+              "id": "col-11",
+              "columnConfig": {},
+              "cells": [
+                {
+                  "id": "cell-111",
+                  "cellConfig": {},
+                  "widgets": [
+                    {
+                      "id": "widg-1111",
+                      "viz": {
+                        "appId": "sap.workzone.cpkg.AIScard.app",
+                        "vizId": "sap.workzone.cpkg.AIScard.viz"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
